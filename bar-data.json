@@ -1,61 +1,53 @@
 {
-  "updatedAt": "2025-08-29T19:22:26+05:30",
+  "updatedAt": "2025-08-29T19:41:30+05:30",
   "items": [
     {
       "symbol": "^spx",
       "name": "S&P 500",
-      "price": 6475.33,
-      "change": -26.529999999999745,
-      "changePercent": -0.4080370847726612,
+      "price": 6455.24,
+      "change": -46.61999999999989,
+      "changePercent": -0.7170255896005127,
       "marketState": "DAILY"
     },
     {
       "symbol": "^ndx",
       "name": "NASDAQ 100",
-      "price": 23507.014,
-      "change": -196.4360000000015,
-      "changePercent": -0.8287232449284871,
+      "price": 23422.848,
+      "change": -280.60199999999895,
+      "changePercent": -1.1838023578846073,
       "marketState": "DAILY"
     },
     {
-      "symbol": "^dji",
-      "name": "Dow Jones",
-      "price": 45520.13,
-      "change": -116.77000000000407,
-      "changePercent": -0.25586751072050046,
+      "symbol": "^kospi",
+      "name": "KOSPI (Korea)",
+      "price": 3188.06,
+      "change": -13.320000000000164,
+      "changePercent": -0.4160705695668794,
       "marketState": "DAILY"
     },
     {
-      "symbol": "aapl.us",
-      "name": "Apple",
-      "price": 232.34,
-      "change": -0.21999999999999886,
-      "changePercent": -0.09459924320605385,
+      "symbol": "^nkx",
+      "name": "Nikkei 225",
+      "price": 42718.47,
+      "change": -110.31999999999971,
+      "changePercent": -0.25758374215101504,
       "marketState": "DAILY"
     },
     {
-      "symbol": "msft.us",
-      "name": "Microsoft",
-      "price": 507.625,
-      "change": -2.0149999999999864,
-      "changePercent": -0.39537712895376864,
+      "symbol": "^hsi",
+      "name": "Hang Seng",
+      "price": 25077.62,
+      "change": 78.79999999999927,
+      "changePercent": 0.3152148781422454,
       "marketState": "DAILY"
     },
     {
-      "symbol": "BTC-USD",
-      "name": "Bitcoin",
-      "price": 109325,
-      "change": -3.0864962014372157,
-      "changePercent": -3.0864962014372157,
-      "marketState": "CRYPTO"
-    },
-    {
-      "symbol": "ETH-USD",
-      "name": "Ethereum",
-      "price": 4334.11,
-      "change": -5.273336527352898,
-      "changePercent": -5.273336527352898,
-      "marketState": "CRYPTO"
+      "symbol": "^dax",
+      "name": "DAX (Germany)",
+      "price": 24005.13,
+      "change": -34.789999999997235,
+      "changePercent": -0.14471761969256652,
+      "marketState": "DAILY"
     }
   ]
 }
