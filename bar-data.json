@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2025-08-29T19:00:47+05:30",
+  "updatedAt": "2025-08-29T19:10:16+05:30",
   "items": [
     {
       "symbol": "BTC-USD",
       "name": "Bitcoin",
-      "price": 110513,
-      "change": -2.3375718580076494,
-      "changePercent": -2.3375718580076494,
+      "price": 110049,
+      "change": -2.60716555739164,
+      "changePercent": -2.60716555739164,
       "marketState": "CRYPTO"
     },
     {
       "symbol": "ETH-USD",
       "name": "Ethereum",
-      "price": 4395.1,
-      "change": -4.466500881039295,
-      "changePercent": -4.466500881039295,
+      "price": 4370,
+      "change": -5.029263534440415,
+      "changePercent": -5.029263534440415,
       "marketState": "CRYPTO"
     }
   ]
