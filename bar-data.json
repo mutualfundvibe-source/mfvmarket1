@@ -1,53 +1,33 @@
 {
-  "updatedAt": "2025-08-29T20:22:15+05:30",
+  "updatedAt": "29-08-2025, 08:36:03 pm",
   "items": [
     {
       "symbol": "^spx",
       "name": "S&P 500",
-      "price": 6447.02,
-      "change": -54.839999999999236,
-      "changePercent": -0.8434509509586371,
-      "marketState": "DAILY"
+      "price": 6454.68,
+      "change": -47.17999999999938,
+      "changePercent": -0.7256385095957062
     },
     {
       "symbol": "^ndx",
       "name": "NASDAQ 100",
-      "price": 23391.21,
-      "change": -312.2400000000016,
-      "changePercent": -1.3172765989761053,
-      "marketState": "DAILY"
-    },
-    {
-      "symbol": "^kospi",
-      "name": "KOSPI (Korea)",
-      "price": 3188.06,
-      "change": -13.320000000000164,
-      "changePercent": -0.4160705695668794,
-      "marketState": "DAILY"
-    },
-    {
-      "symbol": "^nkx",
-      "name": "Nikkei 225",
-      "price": 42718.47,
-      "change": -110.31999999999971,
-      "changePercent": -0.25758374215101504,
-      "marketState": "DAILY"
+      "price": 23406.049,
+      "change": -297.40100000000166,
+      "changePercent": -1.2546738976815681
     },
     {
       "symbol": "^hsi",
       "name": "Hang Seng",
       "price": 25077.62,
       "change": 78.79999999999927,
-      "changePercent": 0.3152148781422454,
-      "marketState": "DAILY"
+      "changePercent": 0.3152148781422454
     },
     {
-      "symbol": "^dax",
-      "name": "DAX (Germany)",
-      "price": 23958.03,
-      "change": -81.88999999999942,
-      "changePercent": -0.3406417325847982,
-      "marketState": "DAILY"
+      "symbol": "^shc",
+      "name": "Shanghai Comp.",
+      "price": 3857.9274,
+      "change": 14.329999999999927,
+      "changePercent": 0.3728278096972364
     }
   ]
 }
