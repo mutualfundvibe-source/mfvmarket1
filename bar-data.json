@@ -1,60 +1,60 @@
 {
-  "updatedAt": "2025-08-29T19:19:03+05:30",
+  "updatedAt": "2025-08-29T19:22:26+05:30",
   "items": [
     {
       "symbol": "^spx",
       "name": "S&P 500",
-      "price": 6476.31,
-      "change": -25.549999999999272,
-      "changePercent": -0.39296447478105145,
+      "price": 6475.33,
+      "change": -26.529999999999745,
+      "changePercent": -0.4080370847726612,
       "marketState": "DAILY"
     },
     {
       "symbol": "^ndx",
       "name": "NASDAQ 100",
-      "price": 23507.666,
-      "change": -195.78399999999965,
-      "changePercent": -0.8259725904878812,
+      "price": 23507.014,
+      "change": -196.4360000000015,
+      "changePercent": -0.8287232449284871,
       "marketState": "DAILY"
     },
     {
       "symbol": "^dji",
       "name": "Dow Jones",
-      "price": 45589.07,
-      "change": -47.830000000001746,
-      "changePercent": -0.10480554113009811,
+      "price": 45520.13,
+      "change": -116.77000000000407,
+      "changePercent": -0.25586751072050046,
       "marketState": "DAILY"
     },
     {
       "symbol": "aapl.us",
       "name": "Apple",
-      "price": 232.02,
-      "change": -0.539999999999992,
-      "changePercent": -0.23219814241485726,
+      "price": 232.34,
+      "change": -0.21999999999999886,
+      "changePercent": -0.09459924320605385,
       "marketState": "DAILY"
     },
     {
       "symbol": "msft.us",
       "name": "Microsoft",
-      "price": 508.61,
-      "change": -1.0299999999999727,
-      "changePercent": -0.20210344556941623,
+      "price": 507.625,
+      "change": -2.0149999999999864,
+      "changePercent": -0.39537712895376864,
       "marketState": "DAILY"
     },
     {
       "symbol": "BTC-USD",
       "name": "Bitcoin",
-      "price": 109373,
-      "change": -3.034193569232296,
-      "changePercent": -3.034193569232296,
+      "price": 109325,
+      "change": -3.0864962014372157,
+      "changePercent": -3.0864962014372157,
       "marketState": "CRYPTO"
     },
     {
       "symbol": "ETH-USD",
       "name": "Ethereum",
-      "price": 4327.56,
-      "change": -5.54491305329691,
-      "changePercent": -5.54491305329691,
+      "price": 4334.11,
+      "change": -5.273336527352898,
+      "changePercent": -5.273336527352898,
       "marketState": "CRYPTO"
     }
   ]
