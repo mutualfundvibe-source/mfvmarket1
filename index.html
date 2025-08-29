@@ -23,41 +23,15 @@
 <body>
   <div class="meta">
     <div id="updated">Loading…</div>
-    <div>Source: Yahoo (client) + CoinGecko (server fallback)</div>
+    <div>Source: Stooq (server) + CoinGecko (server)</div>
     <a class="cta" href="https://sites.google.com/view/mutualfundvibe/home" target="_blank" rel="noopener">Learn investing →</a>
   </div>
 
   <div class="bar" id="bar" aria-label="Live market bar"></div>
 
   <script>
-    // 🔗 Your GitHub Pages JSON (server-side fallback: BTC/ETH from CoinGecko)
+    // 🔗 Your GitHub Pages JSON
     const DATA_URL = "https://mutualfundvibe-source.github.io/mfvmarket1/bar-data.json";
-
-    // ✅ Fetch these LIVE from Yahoo in the browser (more reliable than raw index codes)
-    // India via ETFs + a few global/FX/commodities + two US stocks
-    const LIVE_YAHOO = [
-      "NIFTYBEES.NS",   // NIFTY 50 ETF
-      "BANKBEES.NS",    // BANK NIFTY ETF
-      "SENSEXBEES.NS",  // SENSEX ETF
-      "^GSPC",          // S&P 500
-      "^NDX",           // NASDAQ 100
-      "USDINR=X",       // USD/INR
-      "GC=F",           // Gold Futures
-      "AAPL",           // Apple
-      "MSFT"            // Microsoft
-    ];
-
-    const FRIENDLY = {
-      "NIFTYBEES.NS": "NIFTY 50",
-      "BANKBEES.NS": "NIFTY Bank",
-      "SENSEXBEES.NS": "SENSEX",
-      "^GSPC": "S&P 500",
-      "^NDX": "NASDAQ 100",
-      "USDINR=X": "USD/INR",
-      "GC=F": "Gold",
-      "BTC-USD": "Bitcoin",
-      "ETH-USD": "Ethereum"
-    };
 
     const elBar = document.getElementById('bar');
     const elUpdated = document.getElementById('updated');
@@ -75,59 +49,20 @@
       return el;
     }
 
-    async function fetchYahooBrowser(symbols) {
-      const hosts = ["https://query1.finance.yahoo.com", "https://query2.finance.yahoo.com"];
-      for (const base of hosts) {
-        try {
-          const url = `${base}/v7/finance/quote?symbols=${encodeURIComponent(symbols.join(","))}`;
-          const r = await fetch(url, { headers: { "Accept": "application/json" } });
-          if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
-          const j = await r.json();
-          const arr = j?.quoteResponse?.result || [];
-          return arr.map(q => ({
-            symbol: q.symbol,
-            name: FRIENDLY[q.symbol] || q.shortName || q.longName || q.symbol,
-            price: q.regularMarketPrice ?? q.preMarketPrice ?? q.postMarketPrice ?? null,
-            change: q.regularMarketChange ?? 0,
-            changePercent: q.regularMarketChangePercent ?? 0,
-            marketState: q.marketState || "REGULAR"
-          })).filter(x => x.price != null);
-        } catch (e) {
-          // try next host
-        }
-      }
-      return [];
-    }
-
     function toIST(d = new Date()){
       return d.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-    }
-
-    function mergeUnique(primary, fallback){
-      const bySym = new Map();
-      for (const x of fallback) bySym.set(x.symbol, x);
-      for (const y of primary)  bySym.set(y.symbol, y); // primary (live) wins
-      return Array.from(bySym.values());
     }
 
     async function load(){
       elUpdated.textContent = "Loading…";
       try{
-        const [serverData, liveYahoo] = await Promise.allSettled([
-          fetch(DATA_URL, { cache: 'no-store' }).then(r => r.ok ? r.json() : { items: [] }).catch(() => ({ items: [] })),
-          fetchYahooBrowser(LIVE_YAHOO)
-        ]);
-
-        const fallbackItems = serverData.value?.items || [];
-        const liveItems = Array.isArray(liveYahoo.value) ? liveYahoo.value : [];
-
-        const merged = mergeUnique(liveItems, fallbackItems);
+        const r = await fetch(DATA_URL, { cache: 'no-store' });
+        if(!r.ok) throw new Error(`HTTP ${r.status}`);
+        const data = await r.json();
         elBar.innerHTML = '';
-        merged.forEach(x => elBar.appendChild(pill(x)));
-
-        const updated =
-          serverData.value?.updatedAt ? new Date(serverData.value.updatedAt) : new Date();
-        elUpdated.textContent = `Updated: ${toIST(updated)}`;
+        (data.items || []).forEach(x => elBar.appendChild(pill(x)));
+        const t = data.updatedAt ? new Date(data.updatedAt) : new Date();
+        elUpdated.textContent = `Updated: ${toIST(t)}`;
       }catch(e){
         elUpdated.textContent = 'Could not load market data.';
         console.error(e);
@@ -135,7 +70,8 @@
     }
 
     load();
-    setInterval(load, 120000); // refresh every 2 minutes
+    // Optional: refresh every 5 minutes
+    setInterval(load, 300000);
   </script>
 </body>
 </html>
