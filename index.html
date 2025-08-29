@@ -18,21 +18,41 @@
     .meta{ display:flex; justify-content:space-between; gap:12px; padding:8px 12px; font-size:12px; color:var(--muted); background:#0d1629; border-bottom:1px solid #1e2a44; }
     .meta a{ color:var(--brand); text-decoration:none; }
     .meta .cta{ margin-left:auto; padding:6px 10px; border:1px solid #2a3b63; border-radius:8px; color:#d7e6ff; }
-    .sr{ position:absolute; left:-9999px;}
   </style>
 </head>
 <body>
   <div class="meta">
     <div id="updated">Loading…</div>
-    <div>Source: Yahoo Finance (server-side), fallback logic.</div>
+    <div>Source: Yahoo (client) + CoinGecko (server fallback)</div>
     <a class="cta" href="https://sites.google.com/view/mutualfundvibe/home" target="_blank" rel="noopener">Learn investing →</a>
   </div>
-  <div class="bar" id="bar" aria-label="Live market bar">
-    <!-- Pills injected here -->
-  </div>
+
+  <div class="bar" id="bar" aria-label="Live market bar"></div>
+
   <script>
-    
+    // 1) Your GitHub Pages JSON (server-side fallback: BTC/ETH)
     const DATA_URL = "https://mutualfundvibe-source.github.io/mfvmarket1/bar-data.json";
+
+    // 2) Symbols to fetch LIVE from Yahoo in the browser
+    const LIVE_YAHOO = [
+      "^NSEI",     // NIFTY 50
+      "^BSESN",    // SENSEX
+      "^NSEBANK",  // NIFTY BANK
+      "^GSPC",     // S&P 500
+      "^NDX",      // NASDAQ 100
+      "AAPL",
+      "MSFT"
+    ];
+
+    const FRIENDLY = {
+      "^NSEI": "NIFTY 50",
+      "^BSESN": "SENSEX",
+      "^NSEBANK": "NIFTY Bank",
+      "^GSPC": "S&P 500",
+      "^NDX": "NASDAQ 100",
+      "BTC-USD": "Bitcoin",
+      "ETH-USD": "Ethereum"
+    };
 
     const elBar = document.getElementById('bar');
     const elUpdated = document.getElementById('updated');
@@ -40,25 +60,70 @@
     function pill(item){
       const dir = (item.change || 0) >= 0 ? 'up':'down';
       const sign = (item.change || 0) >= 0 ? '+' : '';
-      const li = document.createElement('div');
-      li.className = 'pill';
-      li.innerHTML = `
+      const el = document.createElement('div');
+      el.className = 'pill';
+      el.innerHTML = `
         <span class="name">${item.name || item.symbol}</span>
         <span class="price">${Number(item.price).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</span>
         <span class="chg ${dir}">${sign}${(item.change || 0).toFixed(2)} (${sign}${(item.changePercent || 0).toFixed(2)}%)</span>
       `;
-      return li;
+      return el;
+    }
+
+    async function fetchYahooBrowser(symbols) {
+      // query1 → fallback query2
+      const hosts = ["query1.finance.yahoo.com", "query2.finance.yahoo.com"];
+      for (const host of hosts) {
+        try {
+          const url = `https://${host}/v7/finance/quote?symbols=${encodeURIComponent(symbols.join(","))}`;
+          const r = await fetch(url, { headers: { "Accept": "application/json" } });
+          if (!r.ok) throw new Error(r.status + " " + r.statusText);
+          const j = await r.json();
+          const arr = j?.quoteResponse?.result || [];
+          return arr.map(q => ({
+            symbol: q.symbol,
+            name: FRIENDLY[q.symbol] || q.shortName || q.longName || q.symbol,
+            price: q.regularMarketPrice ?? q.preMarketPrice ?? q.postMarketPrice ?? null,
+            change: q.regularMarketChange ?? 0,
+            changePercent: q.regularMarketChangePercent ?? 0,
+            marketState: q.marketState || "REGULAR"
+          })).filter(x => x.price != null);
+        } catch (e) {
+          // try next host
+        }
+      }
+      return [];
+    }
+
+    function toIST(d = new Date()){
+      return d.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+    }
+
+    function mergeUnique(primary, fallback){
+      const bySym = new Map();
+      for (const x of fallback) bySym.set(x.symbol, x);
+      for (const y of primary)  bySym.set(y.symbol, y); // primary (live) wins
+      return Array.from(bySym.values());
     }
 
     async function load(){
+      elUpdated.textContent = "Loading…";
       try{
-        const r = await fetch(DATA_URL, { cache: 'no-store' });
-        if(!r.ok) throw new Error(`HTTP ${r.status}`);
-        const data = await r.json();
+        const [serverData, liveYahoo] = await Promise.allSettled([
+          fetch(DATA_URL, { cache: 'no-store' }).then(r => r.ok ? r.json() : { items: [] }).catch(() => ({ items: [] })),
+          fetchYahooBrowser(LIVE_YAHOO)
+        ]);
+
+        const fallbackItems = serverData.value?.items || [];
+        const liveItems = Array.isArray(liveYahoo.value) ? liveYahoo.value : [];
+
+        const merged = mergeUnique(liveItems, fallbackItems);
         elBar.innerHTML = '';
-        (data.items || []).forEach(x => elBar.appendChild(pill(x)));
-        const t = data.updatedAt ? new Date(data.updatedAt) : new Date();
-        elUpdated.textContent = `Updated: ${t.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}`;
+        merged.forEach(x => elBar.appendChild(pill(x)));
+
+        const updated =
+          serverData.value?.updatedAt ? new Date(serverData.value.updatedAt) : new Date();
+        elUpdated.textContent = `Updated: ${toIST(updated)}`;
       }catch(e){
         elUpdated.textContent = 'Could not load market data.';
         console.error(e);
@@ -66,8 +131,7 @@
     }
 
     load();
-    // Poll every 2 minutes on the client (optional; can remove if you prefer static)
-    setInterval(load, 120000);
+    setInterval(load, 120000); // refresh every 2 min
   </script>
 </body>
 </html>
