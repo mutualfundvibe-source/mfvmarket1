@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>MutualFundVibe – Market Bar</title>
+  <title>Global Market Feed</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root{ --bg:#0b1220; --card:#121a2b; --text:#e9eef7; --muted:#9fb0c8; --up:#12c48b; --down:#ff5c5c; --brand:#4da3ff; }
+    :root{ --bg:#0b1220; --card:#121a2b; --text:#e9eef7; --muted:#9fb0c8; --up:#12c48b; --down:#ff5c5c; --brand:#7db3ff; }
     *{ box-sizing:border-box; }
     body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial; background:var(--bg); color:var(--text); }
+    .header{ padding:10px 12px; border-bottom:1px solid #1e2a44; background:#0d1629; }
+    .title{ font-weight:700; letter-spacing:.2px; }
+    .brand{ color:var(--brand); font-weight:700; }
+    .disclaimer{ font-size:12px; color:var(--muted); margin-top:2px; }
     .bar{ display:flex; gap:12px; overflow:auto; padding:10px 12px; background:linear-gradient(180deg,#0b1220,#0e1526); border-bottom:1px solid #1e2a44; }
     .pill{ flex:0 0 auto; background:var(--card); padding:10px 12px; border:1px solid #1e2a44; border-radius:999px; display:flex; align-items:baseline; gap:10px; white-space:nowrap; box-shadow:0 1px 0 #000a; }
     .name{ font-weight:600; color:#fff; }
@@ -16,21 +20,22 @@
     .up{ color:var(--up); }
     .down{ color:var(--down); }
     .meta{ display:flex; justify-content:space-between; gap:12px; padding:8px 12px; font-size:12px; color:var(--muted); background:#0d1629; border-bottom:1px solid #1e2a44; }
-    .meta a{ color:var(--brand); text-decoration:none; }
-    .meta .cta{ margin-left:auto; padding:6px 10px; border:1px solid #2a3b63; border-radius:8px; color:#d7e6ff; }
   </style>
 </head>
 <body>
-  <div class="meta">
-    <div id="updated">Loading…</div>
-    <div>Source: Stooq (server) + CoinGecko (server)</div>
-    <a class="cta" href="https://sites.google.com/view/mutualfundvibe/home" target="_blank" rel="noopener">Learn investing →</a>
+  <div class="header">
+    <div class="title">Global Market Feed — <span class="brand">MutualFundVibe</span></div>
+    <div class="disclaimer">Data may be delayed • Not investment advice</div>
   </div>
 
-  <div class="bar" id="bar" aria-label="Live market bar"></div>
+  <div class="meta">
+    <div id="updated">Loading…</div>
+  </div>
+
+  <div class="bar" id="bar" aria-label="Global Market Feed"></div>
 
   <script>
-    // 🔗 Your GitHub Pages JSON
+    // 🔗 Your GitHub Pages JSON (update if your username/repo differ)
     const DATA_URL = "https://mutualfundvibe-source.github.io/mfvmarket1/bar-data.json";
 
     const elBar = document.getElementById('bar');
@@ -70,8 +75,7 @@
     }
 
     load();
-    // Optional: refresh every 5 minutes
-    setInterval(load, 300000);
+    setInterval(load, 300000); // refresh every 5 minutes
   </script>
 </body>
 </html>
