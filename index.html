@@ -30,26 +30,31 @@
   <div class="bar" id="bar" aria-label="Live market bar"></div>
 
   <script>
-    // 1) Your GitHub Pages JSON (server-side fallback: BTC/ETH)
+    // 🔗 Your GitHub Pages JSON (server-side fallback: BTC/ETH from CoinGecko)
     const DATA_URL = "https://mutualfundvibe-source.github.io/mfvmarket1/bar-data.json";
 
-    // 2) Symbols to fetch LIVE from Yahoo in the browser
+    // ✅ Fetch these LIVE from Yahoo in the browser (more reliable than raw index codes)
+    // India via ETFs + a few global/FX/commodities + two US stocks
     const LIVE_YAHOO = [
-      "^NSEI",     // NIFTY 50
-      "^BSESN",    // SENSEX
-      "^NSEBANK",  // NIFTY BANK
-      "^GSPC",     // S&P 500
-      "^NDX",      // NASDAQ 100
-      "AAPL",
-      "MSFT"
+      "NIFTYBEES.NS",   // NIFTY 50 ETF
+      "BANKBEES.NS",    // BANK NIFTY ETF
+      "SENSEXBEES.NS",  // SENSEX ETF
+      "^GSPC",          // S&P 500
+      "^NDX",           // NASDAQ 100
+      "USDINR=X",       // USD/INR
+      "GC=F",           // Gold Futures
+      "AAPL",           // Apple
+      "MSFT"            // Microsoft
     ];
 
     const FRIENDLY = {
-      "^NSEI": "NIFTY 50",
-      "^BSESN": "SENSEX",
-      "^NSEBANK": "NIFTY Bank",
+      "NIFTYBEES.NS": "NIFTY 50",
+      "BANKBEES.NS": "NIFTY Bank",
+      "SENSEXBEES.NS": "SENSEX",
       "^GSPC": "S&P 500",
       "^NDX": "NASDAQ 100",
+      "USDINR=X": "USD/INR",
+      "GC=F": "Gold",
       "BTC-USD": "Bitcoin",
       "ETH-USD": "Ethereum"
     };
@@ -58,7 +63,7 @@
     const elUpdated = document.getElementById('updated');
 
     function pill(item){
-      const dir = (item.change || 0) >= 0 ? 'up':'down';
+      const dir = (item.change || 0) >= 0 ? 'up' : 'down';
       const sign = (item.change || 0) >= 0 ? '+' : '';
       const el = document.createElement('div');
       el.className = 'pill';
@@ -71,13 +76,12 @@
     }
 
     async function fetchYahooBrowser(symbols) {
-      // query1 → fallback query2
-      const hosts = ["query1.finance.yahoo.com", "query2.finance.yahoo.com"];
-      for (const host of hosts) {
+      const hosts = ["https://query1.finance.yahoo.com", "https://query2.finance.yahoo.com"];
+      for (const base of hosts) {
         try {
-          const url = `https://${host}/v7/finance/quote?symbols=${encodeURIComponent(symbols.join(","))}`;
+          const url = `${base}/v7/finance/quote?symbols=${encodeURIComponent(symbols.join(","))}`;
           const r = await fetch(url, { headers: { "Accept": "application/json" } });
-          if (!r.ok) throw new Error(r.status + " " + r.statusText);
+          if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
           const j = await r.json();
           const arr = j?.quoteResponse?.result || [];
           return arr.map(q => ({
@@ -131,7 +135,7 @@
     }
 
     load();
-    setInterval(load, 120000); // refresh every 2 min
+    setInterval(load, 120000); // refresh every 2 minutes
   </script>
 </body>
 </html>
