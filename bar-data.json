@@ -1,5 +1,5 @@
 {
-  "updatedAt": "13-09-2025, 03:22:21 am",
+  "updatedAt": "13-09-2025, 04:02:14 am",
   "items": [
     {
       "symbol": "^spx",
@@ -11,9 +11,9 @@
     {
       "symbol": "^ndx",
       "name": "NASDAQ 100",
-      "price": 24092.193,
-      "change": 99.63299999999799,
-      "changePercent": 0.41526623253207656
+      "price": 24092.19,
+      "change": 99.62999999999738,
+      "changePercent": 0.4152537286558724
     },
     {
       "symbol": "^hsi",
