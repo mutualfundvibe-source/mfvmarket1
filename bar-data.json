@@ -1,12 +1,12 @@
 {
-  "updatedAt": "29-09-2025, 05:22:00 pm",
+  "updatedAt": "29-09-2025, 06:17:54 pm",
   "items": [
     {
       "symbol": "^spx",
       "name": "S&P 500",
       "price": 6643.7,
-      "change": 38.97999999999956,
-      "changePercent": 0.5901839896316508
+      "change": 0,
+      "changePercent": 0
     },
     {
       "symbol": "^ndx",
