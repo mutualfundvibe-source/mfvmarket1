@@ -1,5 +1,5 @@
 {
-  "updatedAt": "20-10-2025, 09:29:17 am",
+  "updatedAt": "20-10-2025, 10:03:05 am",
   "items": [
     {
       "symbol": "^spx",
@@ -18,9 +18,9 @@
     {
       "symbol": "^hsi",
       "name": "Hang Seng",
-      "price": 25850.59,
-      "change": 603.4900000000016,
-      "changePercent": 2.390333939343535
+      "price": 25854.98,
+      "change": 607.880000000001,
+      "changePercent": 2.4077220750105996
     },
     {
       "symbol": "^shc",
