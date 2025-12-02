@@ -1,19 +1,19 @@
 {
-  "updatedAt": "02-12-2025, 09:01:04 pm",
+  "updatedAt": "02-12-2025, 09:25:41 pm",
   "items": [
     {
       "symbol": "^spx",
       "name": "S&P 500",
-      "price": 6827.93,
-      "change": 15.300000000000182,
-      "changePercent": 0.2245828703452291
+      "price": 6846.13,
+      "change": 33.5,
+      "changePercent": 0.4917337357232082
     },
     {
       "symbol": "^ndx",
       "name": "NASDAQ 100",
-      "price": 25512.836,
-      "change": 169.9860000000008,
-      "changePercent": 0.6707453976170825
+      "price": 25598.432,
+      "change": 255.58200000000215,
+      "changePercent": 1.0084974657546495
     },
     {
       "symbol": "^hsi",
