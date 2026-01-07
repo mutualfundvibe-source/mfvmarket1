@@ -1,5 +1,5 @@
 {
-  "updatedAt": "07-01-2026, 09:59:04 am",
+  "updatedAt": "07-01-2026, 10:30:10 am",
   "items": [
     {
       "symbol": "^spx",
@@ -25,9 +25,9 @@
     {
       "symbol": "^shc",
       "name": "Shanghai Comp.",
-      "price": 4095.5437,
-      "change": 11.876500000000306,
-      "changePercent": 0.2908292820727484
+      "price": 4096.3146,
+      "change": 12.647399999999834,
+      "changePercent": 0.30970692224870416
     }
   ]
 }
