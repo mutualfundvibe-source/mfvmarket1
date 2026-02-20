@@ -1,4 +1,33 @@
 {
-  "updatedAt": "20-02-2026, 05:24:04 pm",
-  "items": []
+  "updatedAt": "20-02-2026, 06:36:53 pm",
+  "items": [
+    {
+      "symbol": "^spx",
+      "name": "S&P 500",
+      "price": 6861.89,
+      "change": -19.420000000000073,
+      "changePercent": -0.2822137064018344
+    },
+    {
+      "symbol": "^ndx",
+      "name": "NASDAQ 100",
+      "price": 24797.34,
+      "change": -101.52999999999884,
+      "changePercent": -0.40776950921868677
+    },
+    {
+      "symbol": "^hsi",
+      "name": "Hang Seng",
+      "price": 26413.35,
+      "change": -292.59000000000015,
+      "changePercent": -1.095598956636614
+    },
+    {
+      "symbol": "^shc",
+      "name": "Shanghai Comp.",
+      "price": 4082.0726,
+      "change": -51.94519999999966,
+      "changePercent": -1.2565306322580339
+    }
+  ]
 }
