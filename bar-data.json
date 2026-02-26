@@ -1,19 +1,19 @@
 {
-  "updatedAt": "26-02-2026, 10:09:26 pm",
+  "updatedAt": "26-02-2026, 11:15:51 pm",
   "items": [
     {
       "symbol": "^spx",
       "name": "S&P 500",
-      "price": 6891.7,
-      "change": -54.43000000000029,
-      "changePercent": -0.7836018041700961
+      "price": 6871.89,
+      "change": -74.23999999999978,
+      "changePercent": -1.0687965816936882
     },
     {
       "symbol": "^ndx",
       "name": "NASDAQ 100",
-      "price": 24972.924,
-      "change": -356.1160000000018,
-      "changePercent": -1.4059593257383691
+      "price": 24896.646,
+      "change": -432.39400000000023,
+      "changePercent": -1.7071077308891305
     },
     {
       "symbol": "^hsi",
