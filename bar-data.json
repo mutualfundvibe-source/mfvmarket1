@@ -1,12 +1,12 @@
 {
-  "updatedAt": "28-02-2026, 02:31:51 am",
+  "updatedAt": "28-02-2026, 03:14:05 am",
   "items": [
     {
       "symbol": "^spx",
       "name": "S&P 500",
-      "price": 6878.89,
-      "change": -29.969999999999345,
-      "changePercent": -0.4337908135350745
+      "price": 6878.88,
+      "change": -29.979999999999563,
+      "changePercent": -0.4339355552146022
     },
     {
       "symbol": "^ndx",
