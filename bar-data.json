@@ -1,13 +1,6 @@
 {
-  "updatedAt": "11-04-2026, 07:31:21 pm",
+  "updatedAt": "11-04-2026, 08:26:01 pm",
   "items": [
-    {
-      "symbol": "^spx",
-      "name": "S&P 500",
-      "price": null,
-      "change": 0,
-      "changePercent": 0
-    },
     {
       "symbol": "^ndx",
       "name": "NASDAQ 100",
